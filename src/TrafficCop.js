@@ -2,12 +2,9 @@
 var inProgress = {};
 
 $.trafficCop = function(url, options) {
-    var reqOptions, key;
+    var reqOptions = url, key;
     if(arguments.length === 2) {
-        reqOptions = $.extend({}, options, { url: url });
-    }
-    else {
-        reqOptions = url;
+        reqOptions = $.extend(true, options, { url: url });
     }
     key = JSON.stringify(reqOptions);
     if(inProgress[key]) {
@@ -31,7 +28,6 @@ $.trafficCop = function(url, options) {
                 remove();
             }
         };
-    inProgress[key] = $.extend({}, reqOptions, traffic);
+    inProgress[key] = $.extend(true, {}, reqOptions, traffic);
     $.ajax(inProgress[key]);
 };
-
