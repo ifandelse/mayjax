@@ -1,0 +1,12 @@
+{
+    "source": "src",
+    "output": "lib",
+    "lint": {},
+    "uglify": {},
+    "gzip": {},
+    "extensions": { "uglify": "min", "gzip": "gz" },
+    "wrap": {
+        "prefix": "(function($, undefined) {",
+        "suffix": "})(jQuery);"
+    }
+}
