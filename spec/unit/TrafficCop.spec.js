@@ -87,7 +87,6 @@ QUnit.specify("TrafficCop", function(){
             data: "testData",
             success: function() {
                 succeedCount++;
-                console.log("Succeed Count: " + succeedCount);
                 start();
                 equals( mockCalls, 1, "mockCalls should equal 1");
                 equals( succeedCount, 1, "succeedCount should equal 1");
