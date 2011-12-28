@@ -12,8 +12,7 @@ $.trafficCop = function(url, options) {
             inProgress[key][i](reqOptions[i]);
         }
     } else {
-        inProgress[key] = $.ajax(reqOptions);
-        inProgress[key].always(function () { delete inProgress[key]; });
+        inProgress[key] = $.ajax(reqOptions).always(function () { delete inProgress[key]; });
     }
     return inProgress[key];
 };

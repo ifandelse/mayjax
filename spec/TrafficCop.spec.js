@@ -76,7 +76,7 @@ QUnit.specify("TrafficCop", function(){
         var succeedCountB = 0,
             reqB = {
                 type: "GET",
-                url: "fake.html",
+                url: "fake2.html",
                 data: "otherData",
                 beforeSend: function() { mockCalls++; },
                 success: function() {
