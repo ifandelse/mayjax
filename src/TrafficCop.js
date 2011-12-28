@@ -13,7 +13,7 @@ $.trafficCop = function(url, options) {
         }
     } else {
         inProgress[key] = $.ajax(reqOptions);
+        inProgress[key].always(function () { delete inProgress[key]; });
     }
-    inProgress[key].always(function () { delete inProgress[key]; });
     return inProgress[key];
 };
