@@ -13,23 +13,18 @@ $.trafficCop = function(url, options) {
         return;
     }
 
-    var remove = function() {
-            delete inProgress[key];
-        },
-        traffic = {
+    var traffic = {
             successCallbacks: [reqOptions.success],
             errorCallbacks: [reqOptions.error],
             success: function() {
                 var args = arguments;
                 $.each($(inProgress[key].successCallbacks), function(idx,item){ item.apply(null, args); });
-                remove();
             },
             error: function() {
                 var args = arguments;
                 $.each($(inProgress[key].errorCallbacks), function(idx,item){ item.apply(null, args); });
-                remove();
             }
         };
     inProgress[key] = $.extend(true, {}, reqOptions, traffic);
-    return $.ajax(inProgress[key]);
+    return $.ajax(inProgress[key]).always(function () { delete inProgress[key]; });
 };
