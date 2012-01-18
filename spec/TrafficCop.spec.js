@@ -32,10 +32,6 @@ asyncTest("Returning the jqXHR object", function() {
         ok(xhr, "jqXhr object returns");
         equals( xhr.readyState, 4, "jqXhr readyState is valid");
         equals( xhr.status, 200, "jqXhr status is 200");
-        for(var i in xhr) {
-            console.log(i + ": " + xhr[i]);
-        }
-
         equals( xhr.statusText, "OK", "jqXhr statusText is OK");
         equals( xhr.responseText, "<div>Hi, I'm just a useless fragment....</div>", "jqXhr responseText matches expected");
     });
