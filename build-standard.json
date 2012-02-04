@@ -1,6 +1,6 @@
 {
     "source": "src",
-    "output": "lib",
+    "output": "lib/standard",
     "lint": {},
     "uglify": {},
     "gzip": {},
