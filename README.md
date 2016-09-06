@@ -1,13 +1,29 @@
-## Building TrafficCop
+## mayjax
 
-TrafficCop uses Anvi.js to build standard JavaScript module and AMD module versions of the library.
+Originally named "TrafficCop", this library allows you to prevent simultaneous duplicate HTTP `GET` requests. The first request is allowed through, and while it's executing, any subsequents `GET`s with the exact same `settings` will be queued to have their callbacks invoked when the original call returns.
 
-To build TrafficCop you need to have NodeJS and NPM installed. Once you have those, install Anvil.js
-through npm:
+This library exports a factory that expects an instance of jQuery. The factory returns jQuery, with a `mayjax` method added to it:
 
-`npm install -g anvil.js`
+```javascript
+var $ = require( "mayjax" )( require( "jquery" ) );
 
-Then you can run `./build-all` from a Bash shell, or if you're on Windows, you can run `anvil -b build-standard.json`
-and `anvil -b build-amd.json` to build the version you need.
+$.mayjax( {
+	url: "/two/overlapping/request/1",
+	method: "GET"
+} );
+$.mayjax( {
+	url: "/two/overlapping/request/1",
+	method: "GET"
+} );
+$.mayjax( {
+	url: "/two/overlapping/request/1",
+	method: "GET"
+} );
+```
 
-The resulting files will be in the `lib/(amd|standard)/` folder, depending on which versions were built.
+## Building, Tests, etc.
+To build: `npm run build`. This will create a UMD-wrapped module (via webpack) in the `lib` directory.
+
+To run tests: `npm test`
+
+To do other things: `npm run` to see the list.
