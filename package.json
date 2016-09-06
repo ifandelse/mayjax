@@ -1,0 +1,61 @@
+{
+  "name": "mayjax",
+  "version": "1.0.0",
+  "description": "jQuery AJAX wrapper that prevents multiple simultaneous duplicate GET requests.",
+  "main": "lib/mayjax.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ifandelse/mayjax.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "format": "jscs --fix ./",
+    "lint": "eslint --fix ./",
+    "cover": "nyc -r text-summary -r html -- npm run test:only",
+    "cover:show": "open \"file://$PWD/coverage/index.html\"",
+    "pretest": "npm run format && npm run lint && npm run build",
+    "test": "npm run cover",
+    "test:only": "NODE_ENV=test mocha --compilers js:babel-register -R spec 'spec/**/*.spec.js'",
+    "test:watch": "npm run test:only -- -w"
+  },
+  "author": "Jim Cowart",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015-without-strict": "0.0.4",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.14.0",
+    "chai": "^3.5.0",
+    "dirty-chai": "^1.2.2",
+    "eslint": "^3.4.0",
+    "eslint-config-leankit": "^2.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "jquery": "^3.1.0",
+    "jquery-mockjax": "^2.2.0",
+    "jscs": "^3.0.7",
+    "jsdom": "^9.5.0",
+    "mocha": "^3.0.2",
+    "nyc": "^7.0.0",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.5",
+    "sinon-as-promised": "^4.0.2",
+    "sinon-chai": "^2.8.0",
+    "webpack": "^1.13.2"
+  },
+  "engine": ">=6.0.0",
+  "dependencies": {},
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "all": true,
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  }
+}
